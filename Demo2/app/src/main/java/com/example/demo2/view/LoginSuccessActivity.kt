@@ -51,6 +51,7 @@ class LoginSuccessActivity : AppCompatActivity() {
                 }
             }
         }
+
         binding.btnSave.setOnClickListener {
             loginViewModel.copyFileToInternalStorage(context,R.drawable.durdledoor)
             Toast.makeText(this, "Image saved to Internal Storage", Toast.LENGTH_SHORT).show()
