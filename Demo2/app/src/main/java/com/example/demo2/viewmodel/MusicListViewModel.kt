@@ -8,7 +8,7 @@ import com.example.demo2.repository.MusicListRepository
 
 class MusicListViewModel : ViewModel() {
 
-    var servicesLiveData: MutableLiveData<MusicList>? = null
+    private var servicesLiveData: MutableLiveData<MusicList>? = null
 
     fun getMusic() : LiveData<MusicList>? {
         servicesLiveData = MusicListRepository.getServicesApiCall()

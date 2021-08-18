@@ -1,44 +1,100 @@
 package com.example.demo2.view
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.lifecycle.Observer
+import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.demo2.R
 import com.example.demo2.databinding.ActivityLoginSuccessBinding
+import com.example.demo2.services.BroadCastReceivers
+import com.example.demo2.services.showSnackbar
 import com.example.demo2.viewmodel.LoginViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
+
+
 class LoginSuccessActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginSuccessBinding
-    lateinit var strUsername: String
-    lateinit var loginViewModel: LoginViewModel
+    private lateinit var strUsername: String
+    private lateinit var loginViewModel: LoginViewModel
     lateinit var context:Context
-
+    private lateinit var receiver: BroadCastReceivers
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginSuccessBinding.inflate(layoutInflater)
         setContentView(binding.root)
         context=this@LoginSuccessActivity
-        getSupportActionBar()!!.hide();
+        supportActionBar!!.hide()
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         strUsername = intent.getStringExtra("username").toString()
 
-        binding.imgToSave.setImageResource(R.drawable.durdledoor)
-        loginViewModel.getLoginDetails(context, strUsername)!!.observe(this, Observer {
+        receiver= BroadCastReceivers()
+
+
+        binding.imgCamera.setOnClickListener {
+            when{
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    it.showSnackbar(
+                        it,
+                        getString(R.string.permission_granted),
+                        Snackbar.LENGTH_INDEFINITE,
+                        getString(R.string.ok)
+                    ) {}
+
+                }
+
+                ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.CAMERA
+                ) -> {
+                    it.showSnackbar(
+                        it,
+                        getString(R.string.permission_required),
+                        Snackbar.LENGTH_INDEFINITE,
+                        getString(R.string.ok)
+                    ) {
+                        requestPermissionLauncher.launch(
+                            Manifest.permission.CAMERA
+                        )
+                    }
+                }
+
+                else -> {
+                    requestPermissionLauncher.launch(
+                        Manifest.permission.CAMERA
+                    )
+                }
+            }
+
+        }
+
+        loginViewModel.getLoginDetails(context, strUsername)!!.observe(this, {
 
             if (it == null) {
-                binding.txtName.text = "Data Not Found"
+                binding.txtName.text = resources.getString(R.string.data_not_found)
 
             }
             else {
-                binding.txtName.text = "Welcome "+it.Username +" your password is "+it.Password
+                val result =
+                    getString(R.string.welcome)+
+                    it.Username+resources.getString(R.string.user_password)+it.Password
+                binding.txtName.text =result
 
             }
         })
@@ -47,19 +103,34 @@ class LoginSuccessActivity : AppCompatActivity() {
             GlobalScope.launch {
                 loginViewModel.deleteUser(context, strUsername)
                 withContext(Dispatchers.Main){
-                    binding.txtName.text = "User deleted"
+                    binding.txtName.text = resources.getString(R.string.user_deleted)
                 }
             }
         }
 
-        binding.btnSave.setOnClickListener {
-            loginViewModel.copyFileToInternalStorage(context,R.drawable.durdledoor)
-            Toast.makeText(this, "Image saved to Internal Storage", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.imgNext.setOnClickListener {
-            val intent = Intent(this, PermissionActivity::class.java)
+        binding.btnNext.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Log.i("Permission: ", "Granted")
+            } else {
+                Log.i("Permission: ", "Denied")
+            }
+        }
+    override fun onResume() {
+        super.onResume()
+        IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED).also {
+            registerReceiver(receiver, it)
+        }
+    }
+    override fun onStop() {
+        super.onStop()
+        unregisterReceiver(receiver)
     }
 }

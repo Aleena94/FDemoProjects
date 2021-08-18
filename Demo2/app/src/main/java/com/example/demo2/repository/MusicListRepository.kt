@@ -2,6 +2,7 @@ package com.example.demo2.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.demo2.constants.Constants
 import com.example.demo2.model.musiclist.MusicList
 import com.example.demo2.retrofit.RetrofitClient
 import retrofit2.Call
@@ -14,7 +15,7 @@ object MusicListRepository {
 
     fun getServicesApiCall(): MutableLiveData<MusicList> {
 
-        val call = RetrofitClient.apiInterface.getMusicList("album.search","believe","3a798e0cc7e3cbcaddd749a6f51a308f","json")
+        val call = RetrofitClient.apiInterface.getMusicList("album.search","believe", Constants.api_key,"json")
 
         call!!.enqueue(object: Callback<MusicList?> {
             override fun onFailure(call: Call<MusicList?>, t: Throwable) {

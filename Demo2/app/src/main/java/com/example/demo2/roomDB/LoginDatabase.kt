@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.*
 import com.example.demo2.model.login.LoginModel
 
-@Database(entities = arrayOf(LoginModel::class), version = 1, exportSchema = false)
+@Database(entities = [LoginModel::class], version = 1, exportSchema = false)
 abstract class LoginDatabase : RoomDatabase() {
 
     abstract fun loginDao() : DAO
@@ -14,7 +14,7 @@ abstract class LoginDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: LoginDatabase? = null
 
-        fun getDataseClient(context: Context) : LoginDatabase {
+        fun getDatabaseClient(context: Context) : LoginDatabase {
 
             if (INSTANCE != null) return INSTANCE!!
 
