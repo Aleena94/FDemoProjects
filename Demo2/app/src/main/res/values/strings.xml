@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">Demo2</string>
-    <string name="permission_required">Camera access is reruired to display camera preview</string>
-    <string name="ok">ok</string>
+    <string name="permission_required">Camera access is required to display camera preview</string>
+    <string name="ok">OK</string>
     <string name="permission_granted">Permission Granted</string>
+    <string name="next">NEXT</string>
+    <string name="music_image">Music Image</string>
+    <string name="login">LOGIN</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="delete_user">DELETE USER</string>
+    <string name="welcome">Welcome\u0020</string>
+    <string name="user_password">\u0020 your password is \u0020</string>
+    <string name="user_deleted">User deleted</string>
+    <string name="data_not_found">Data Not Found</string>
 </resources>

@@ -10,12 +10,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
 
-    var BASE_URL = "https://ws.audioscrobbler.com/"
-    val retrofitClient: Retrofit.Builder by lazy {
+    private var BASE_URL = "https://ws.audioscrobbler.com/"
+    private val retrofitClient: Retrofit.Builder by lazy {
 
-        val levelType: Level
-        if (BuildConfig.BUILD_TYPE.contentEquals("debug"))
-            levelType = Level.BODY else levelType = Level.NONE
+        val levelType: Level = if (BuildConfig.BUILD_TYPE.contentEquals("debug"))
+            Level.BODY else Level.NONE
 
         val logging = HttpLoggingInterceptor()
         logging.setLevel(levelType)

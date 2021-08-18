@@ -8,8 +8,8 @@ import com.example.demo2.model.login.LoginModel
 
 @Dao
 interface DAO {
-    @Insert()
-    suspend fun InsertData(loginTableModel: LoginModel)
+    @Insert
+    suspend fun insertData(loginTableModel: LoginModel)
 
     @Query("SELECT * FROM Login WHERE Username =:username")
     fun getLoginDetails(username: String?) : LiveData<LoginModel>

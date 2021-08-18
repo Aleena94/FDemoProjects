@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/constarint"
-    android:background="@color/white"
+    android:id="@+id/constraint"
     tools:context=".view.LoginActivity">
 <androidx.cardview.widget.CardView
     android:layout_width="400dp"
     android:layout_height="300dp"
     android:layout_margin="30dp"
-    android:background="#E4E8BD"
+    android:background="@color/login_background"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -20,58 +19,59 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="#E4E8BD">
-        <androidx.appcompat.widget.AppCompatTextView
+        <TextView
             android:id="@+id/txtLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LOGIN"
+            android:text="@string/login"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <androidx.appcompat.widget.AppCompatEditText
+        <EditText
             android:id="@+id/txtUsername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="#000000"
-            android:hint="Username"
+            android:hint="@string/username"
             android:textColorHint="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="20sp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <EditText
             android:id="@+id/txtPassword"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textColorHint="@color/black"
-            android:hint="Password"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
+            android:hint="@string/password"
+            android:layout_marginTop="20sp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+            app:layout_constraintTop_toBottomOf="@+id/txtUsername"
+            android:inputType="textPassword" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/btnLogin"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:textColor="@color/black"
+            android:layout_marginTop="30sp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
+            android:textColor="@color/white"
             android:background="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtPassword"
-            android:text="LOGIN"/>
+            android:text="@string/login"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

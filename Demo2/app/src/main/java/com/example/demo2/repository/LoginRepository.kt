@@ -11,11 +11,11 @@ import kotlinx.coroutines.launch
 class LoginRepository {
     companion object {
 
-        var loginDatabase: LoginDatabase? = null
-        var loginModel: LiveData<LoginModel>? = null
+        private var loginDatabase: LoginDatabase? = null
+        private var loginModel: LiveData<LoginModel>? = null
 
-        fun initializeDB(context: Context): LoginDatabase {
-            return LoginDatabase.getDataseClient(context)
+        private fun initializeDB(context: Context): LoginDatabase {
+            return LoginDatabase.getDatabaseClient(context)
         }
 
         fun insertData(context: Context, username: String, password: String) {
@@ -24,7 +24,7 @@ class LoginRepository {
 
             CoroutineScope(Dispatchers.IO).launch {
                 val loginDetails = LoginModel(username, password)
-                loginDatabase!!.loginDao().InsertData(loginDetails)
+                loginDatabase!!.loginDao().insertData(loginDetails)
             }
         }
 
