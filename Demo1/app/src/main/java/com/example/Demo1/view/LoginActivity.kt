@@ -38,12 +38,10 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 lifecycleScope.launch {
                     loginViewModel.insertData(context, strUsername, strPassword)
-
                 }
                 val intent = Intent(this, LoginSuccessActivity::class.java)
                 intent.putExtra("username", strUsername);
                 startActivity(intent)
-
             }
         }
     }
