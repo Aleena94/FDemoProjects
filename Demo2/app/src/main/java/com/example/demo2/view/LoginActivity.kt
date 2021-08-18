@@ -2,8 +2,10 @@ package com.example.demo2.view
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.demo2.databinding.ActivityLoginBinding
@@ -24,6 +26,15 @@ class LoginActivity : AppCompatActivity() {
         context = this@LoginActivity
         supportActionBar!!.hide()
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+        val action: String? = intent?.action
+        val data: Uri? = intent?.data
+        if(data!=null){
+            val params: List<String> = data.pathSegments
+            val id = params[params.size - 1]
+            Toast.makeText(applicationContext,id,Toast.LENGTH_SHORT).show()
+        }
+
         binding.btnLogin.setOnClickListener {
 
             strUsername = binding.txtUsername.text.toString().trim()
