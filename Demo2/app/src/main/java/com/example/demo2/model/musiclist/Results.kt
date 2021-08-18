@@ -1,4 +1,4 @@
-package com.example.demo2.model
+package com.example.demo2.model.musiclist
 
 data class Results(
     val attr: Attr,
