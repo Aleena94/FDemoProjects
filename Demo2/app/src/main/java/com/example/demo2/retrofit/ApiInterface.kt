@@ -1,6 +1,6 @@
 package com.example.demo2.retrofit
 
-import com.example.demo2.model.MusicList
+import com.example.demo2.model.musiclist.MusicList
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

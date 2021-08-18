@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.demo2.R
-import com.example.demo2.model.Album
+import com.example.demo2.model.musiclist.Album
 
 class MusicListAdapter(
     private val context: Context,

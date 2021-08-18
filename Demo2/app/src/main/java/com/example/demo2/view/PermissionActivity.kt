@@ -26,6 +26,7 @@ class PermissionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         permissionBinding = ActivityPermissionBinding.inflate(layoutInflater)
         setContentView(permissionBinding.root)
+        getSupportActionBar()!!.hide()
         receiver= BroadCastReceivers()
     }
 

@@ -21,10 +21,12 @@ class MainActivity : AppCompatActivity() {
     private var adapter: MusicListAdapter? = null
     lateinit var layoutManager : LinearLayoutManager
     lateinit var mainBinding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
+        getSupportActionBar()!!.hide()
         context = this@MainActivity
         layoutManager = LinearLayoutManager(this)
         musicListViewModel = ViewModelProvider(this).get(MusicListViewModel::class.java)
