@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Demo2</string>
+    <string name="permission_required">Camera access is reruired to display camera preview</string>
+    <string name="ok">ok</string>
+    <string name="permission_granted">Permission Granted</string>
+</resources>
