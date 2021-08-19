@@ -2,15 +2,11 @@ package com.example.demo.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.example.demo.R
+import com.example.demo.databinding.ItemMusiclistBinding
 import com.example.demo.interfaces.ItemClickListener
 import com.example.demo.model.musiclist.Album
 
@@ -23,6 +19,7 @@ class MusicListAdapter(
     RecyclerView.Adapter<MusicListAdapter.MyViewHolder>() {
     private var musicList: List<Album>
     private val clickListener: ItemClickListener
+    private lateinit var binding: ItemMusiclistBinding
 
 
     fun setMusicList(musicList: List<Album>) {
@@ -30,21 +27,21 @@ class MusicListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view: View =
-            LayoutInflater.from(context).inflate(R.layout.item_musiclist, parent, false)
-        return MyViewHolder(view)
+        binding = ItemMusiclistBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tvName.text = (musicList[position].name)
-        holder.tvArtist.text = (musicList[position].artist)
+
+        binding.tvName.text = (musicList[position].name)
+        binding.tvArtist.text = (musicList[position].artist)
         Glide
             .with(context)
             .load(musicList[position].image[1].text)
             .centerCrop()
-            .into(holder.imgArtist)
+            .into(binding.imgArtist)
 
-        holder.cardItem.setOnClickListener {
+        binding.itemMusic.setOnClickListener {
             clickListener.onItemClick(
                 musicList[position],
                 musicList[position].image[1].text
@@ -56,13 +53,7 @@ class MusicListAdapter(
         return musicList.size
     }
 
-    inner class MyViewHolder(itemView: View) : ViewHolder(itemView) {
-        var tvName: TextView = itemView.findViewById<View>(R.id.nameView) as TextView
-        var tvArtist: TextView = itemView.findViewById<View>(R.id.artistView) as TextView
-        var imgArtist: ImageView = itemView.findViewById<View>(R.id.imgAlbum) as ImageView
-        var cardItem: CardView = itemView.findViewById<View>(R.id.cardItem) as CardView
-
-    }
+    inner class MyViewHolder(itemBinding: ItemMusiclistBinding) : ViewHolder(itemBinding.root)
 
 
     init {
