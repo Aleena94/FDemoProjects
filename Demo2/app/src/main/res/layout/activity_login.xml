@@ -4,77 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/constraint"
     tools:context=".view.LoginActivity">
-<androidx.cardview.widget.CardView
-    android:layout_width="400dp"
-    android:layout_height="300dp"
-    android:layout_margin="30dp"
-    android:background="@color/login_background"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="#E4E8BD">
-        <TextView
-            android:id="@+id/txtLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <EditText
-            android:id="@+id/txtUsername"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:hint="@string/username"
-            android:textColorHint="@color/black"
-            android:layout_marginTop="20sp"
-            android:layout_marginStart="40sp"
-            android:layout_marginEnd="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_30sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/txtPassword"
-            android:layout_width="0sp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textColorHint="@color/black"
-            android:hint="@string/password"
-            android:layout_marginTop="20sp"
-            android:layout_marginStart="40sp"
-            android:layout_marginEnd="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsername"
-            android:inputType="textPassword" />
+            android:background="@color/login_background">
 
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30sp"
-            android:layout_marginStart="40sp"
-            android:layout_marginEnd="40sp"
-            android:textColor="@color/white"
-            android:background="@color/red"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPassword"
-            android:text="@string/login"/>
+            <TextView
+                android:id="@+id/txtLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/login"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/txtUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:autofillHints="username"
+                android:hint="@string/username"
+                android:inputType="text"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/backgroundColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLogin" />
 
-</androidx.cardview.widget.CardView>
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:autofillHints="password"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/backgroundColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@color/buttonColor"
+                android:text="@string/login"
+                android:textColor="@color/textColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/theme"
+                android:textColor="@color/buttonColor"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
