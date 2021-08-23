@@ -24,20 +24,20 @@ class LoginRepository {
 
             CoroutineScope(Dispatchers.IO).launch {
                 val loginDetails = LoginModel(username, password)
-                loginDatabase!!.loginDao().insertData(loginDetails)
+                loginDatabase!!.dbOperationsDao().insertData(loginDetails)
             }
         }
 
         fun getLoginDetails(context: Context, username: String): LiveData<LoginModel>? {
 
             loginDatabase = initializeDB(context)
-            loginModel = loginDatabase!!.loginDao().getLoginDetails(username)
+            loginModel = loginDatabase!!.dbOperationsDao().getLoginDetails(username)
             return loginModel
         }
 
         fun deleteByUsername(context: Context, username: String) {
             loginDatabase = initializeDB(context)
-            loginDatabase!!.loginDao().deleteByUsername(username)
+            loginDatabase!!.dbOperationsDao().deleteByUsername(username)
 
         }
     }

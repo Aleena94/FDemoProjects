@@ -41,6 +41,9 @@ class LoginSuccessActivity : AppCompatActivity() {
 
         receiver = BroadCastReceivers()
 
+        val animation = CircleAnimation(binding.viewCircle, 360)
+        animation.duration = 1000
+        binding.viewCircle.startAnimation(animation)
 
         binding.imgCamera.setOnClickListener {
             when {
@@ -109,6 +112,12 @@ class LoginSuccessActivity : AppCompatActivity() {
             val intent = Intent(this, DataListingActivity::class.java)
             startActivity(intent)
         }
+
+        binding.btnMovie.setOnClickListener {
+            val intent = Intent(this, MoviesActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private val requestPermissionLauncher =

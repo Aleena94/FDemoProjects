@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="color" format="color"/>
+    <attr name="widthStroke" format="integer"/>
+    <attr name="radius" format="integer"/>
+
+    <declare-styleable name="CircularProgressTickView">
+        <attr name="color" />
+        <attr name="widthStroke"/>
+        <attr name="radius"/>
+    </declare-styleable>
+    <declare-styleable name="CircleView">
+        <attr name="color" />
+        <attr name="widthStroke"/>
+        <attr name="radius"/>
+    </declare-styleable>
+</resources>

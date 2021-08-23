@@ -1,5 +1,6 @@
 package com.example.demo.retrofit
 
+import com.example.demo.model.movielist.MovieList
 import com.example.demo.model.musiclist.MusicList
 import retrofit2.Call
 import retrofit2.http.GET
@@ -14,4 +15,13 @@ interface ApiInterface {
         @Query("api_key") apikey: String?,
         @Query("format") format: String?
     ): Call<MusicList?>?
+
+
+    @GET("3/movie/top_rated")
+    fun getMovieList(
+        @Query("page") page: String?,
+        @Query("language") language: String?,
+        @Query("api_key") apikey: String?,
+    ): Call<MovieList?>?
+
 }
