@@ -14,6 +14,7 @@ import com.example.demo.R
 import com.example.demo.adapter.MovieAdapter
 import com.example.demo.adapter.PaginatedAdapter
 import com.example.demo.databinding.ActivityMoviesBinding
+import com.example.demo.model.movielist.Result
 import com.example.demo.services.isOnline
 import com.example.demo.viewmodel.MovieViewModel
 import java.util.*
@@ -85,9 +86,8 @@ class MoviesActivity : AppCompatActivity() {
 
     }
 
-    private fun onGetDate(result: List<com.example.demo.model.movielist.Result?>?) {
-        adapter.submitItems(result)
+    private fun onGetDate(result: List<Result?>?) {
+        adapter.submitItems(result as Collection<Result>)
     }
 
 }
-
