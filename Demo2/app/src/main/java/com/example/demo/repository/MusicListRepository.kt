@@ -10,11 +10,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object MusicListRepository {
+class MusicListRepository {
+    val musicList = MutableLiveData<MusicList>()
 
-    val serviceSetterGetter = MutableLiveData<MusicList>()
-
-    fun getServicesApiCall(): MutableLiveData<MusicList> {
+    fun getMusic(): MutableLiveData<MusicList> {
         val service: ApiInterface =
             RetrofitClient.getRetrofitInstance()!!.create(ApiInterface::class.java)
         val call = service.getMusicList("album.search","believe", Constants.api_key,"json")
@@ -26,12 +25,12 @@ object MusicListRepository {
 
             override fun onResponse(call: Call<MusicList?>, response: Response<MusicList?>) {
                 Log.v("DEBUG : ", response.body().toString())
-
-                serviceSetterGetter.postValue(response.body())
+                println("response music:"+call.request().url)
+                musicList.postValue(response.body())
 
             }
         })
 
-        return serviceSetterGetter
+        return musicList
     }
 }

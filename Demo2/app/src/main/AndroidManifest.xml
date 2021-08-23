@@ -15,13 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.demo.view.LoadMusicUrlActivity"
+            android:name=".view.MoviesActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.demo.view.LoginSuccessActivity"
+            android:name=".view.LoadMusicUrlActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.demo.view.LoginActivity"
+            android:name=".view.LoginSuccessActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.LoginActivity"
             android:exported="true"
             tools:ignore="AppLinkUrlError">
             <intent-filter>
@@ -51,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.demo.view.DataListingActivity"
+            android:name=".view.DataListingActivity"
             android:exported="true" />
     </application>
 

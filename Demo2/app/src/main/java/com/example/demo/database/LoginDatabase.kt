@@ -9,7 +9,7 @@ import com.example.demo.model.login.LoginModel
 @Database(entities = [LoginModel::class], version = 1, exportSchema = false)
 abstract class LoginDatabase : RoomDatabase() {
 
-    abstract fun loginDao(): Dao
+    abstract fun dbOperationsDao(): Dao
 
     companion object {
 

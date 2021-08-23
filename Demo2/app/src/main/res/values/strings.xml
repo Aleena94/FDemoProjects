@@ -14,4 +14,5 @@
     <string name="user_deleted">User deleted</string>
     <string name="data_not_found">Data Not Found</string>
     <string name="theme">Theme</string>
+    <string name="load_movie">LOAD MOVIE</string>
 </resources>
