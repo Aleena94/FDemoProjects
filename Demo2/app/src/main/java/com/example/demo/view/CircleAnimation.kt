@@ -13,4 +13,6 @@ class CircleAnimation(private val circleView: CircleView, newAngle: Int) : Anima
         circleView.requestLayout()
     }
 
+
+
 }
