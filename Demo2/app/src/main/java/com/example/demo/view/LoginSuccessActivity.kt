@@ -25,20 +25,22 @@ import kotlinx.coroutines.withContext
 
 
 class LoginSuccessActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityLoginSuccessBinding
     private lateinit var strUsername: String
     private lateinit var loginViewModel: LoginViewModel
     lateinit var context: Context
     private lateinit var receiver: BroadCastReceivers
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginSuccessBinding.inflate(layoutInflater)
         setContentView(binding.root)
         context = this@LoginSuccessActivity
         supportActionBar!!.hide()
+
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         strUsername = intent.getStringExtra("username").toString()
-
         receiver = BroadCastReceivers()
 
         val animation = CircleAnimation(binding.viewCircle, 360)

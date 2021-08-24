@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +23,6 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
-
 class DataListingActivity : AppCompatActivity(), ItemClickListener {
 
     lateinit var context: Context
@@ -34,32 +32,36 @@ class DataListingActivity : AppCompatActivity(), ItemClickListener {
     private lateinit var mainBinding: ActivityDatalistBinding
     private lateinit var loginViewModel: LoginViewModel
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityDatalistBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
         supportActionBar!!.hide()
         context = this@DataListingActivity
+
         layoutManager = LinearLayoutManager(this)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         musicListViewModel = ViewModelProvider(this).get(MusicListViewModel::class.java)
-        if (isOnline(context)) {
-            musicListViewModel.getMusic()!!.observe(this, { musicList ->
 
-                if (musicList != null) {
-                    mainBinding.recyclerView.layoutManager =
-                        LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                    adapter = MusicListAdapter(this, musicList.results.albummatches.album, this)
-                    mainBinding.recyclerView.adapter = adapter
-                    adapter!!.setMusicList(musicList.results.albummatches.album)
-                    mainBinding.progressBar.visibility = View.GONE
-                }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (isOnline(context)) {
+                musicListViewModel.getMusic()!!.observe(this, { musicList ->
 
-            })
-        } else {
-            mainBinding.progressBar.visibility = View.GONE
-            Toast.makeText(this, "Check your Network Connection", Toast.LENGTH_SHORT).show()
+                    if (musicList != null) {
+                        mainBinding.recyclerView.layoutManager =
+                            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                        adapter =
+                            MusicListAdapter(this, musicList.results.albummatches.album, this)
+                        mainBinding.recyclerView.adapter = adapter
+                        adapter!!.setMusicList(musicList.results.albummatches.album)
+                        mainBinding.progressBar.visibility = View.GONE
+                    }
+
+                })
+            } else {
+                mainBinding.progressBar.visibility = View.GONE
+                Toast.makeText(this, "Check your Network Connection", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -89,7 +91,7 @@ class DataListingActivity : AppCompatActivity(), ItemClickListener {
             val input: InputStream = connection.inputStream
             BitmapFactory.decodeStream(input)
         } catch (e: Exception) {
-            Log.d("vk21", e.toString())
+            Log.d("exception", e.toString())
             null
         }
     }

@@ -16,16 +16,16 @@ class MusicListRepository {
     fun getMusic(): MutableLiveData<MusicList> {
         val service: ApiInterface =
             RetrofitClient.getRetrofitInstance()!!.create(ApiInterface::class.java)
-        val call = service.getMusicList("album.search","believe", Constants.api_key,"json")
+        val call = service.getMusicList("album.search", "believe", Constants.api_key, "json")
 
-        call!!.enqueue(object: Callback<MusicList?> {
+        call!!.enqueue(object : Callback<MusicList?> {
             override fun onFailure(call: Call<MusicList?>, t: Throwable) {
                 Log.v("DEBUG : ", t.message.toString())
             }
 
             override fun onResponse(call: Call<MusicList?>, response: Response<MusicList?>) {
                 Log.v("DEBUG : ", response.body().toString())
-                println("response music:"+call.request().url)
+                println("response music:" + call.request().url)
                 musicList.postValue(response.body())
 
             }

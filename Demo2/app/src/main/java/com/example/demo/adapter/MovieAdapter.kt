@@ -8,7 +8,7 @@ import com.example.demo.model.movielist.Result
 
 class MovieAdapter(
     musicList: List<Result>
-) : PaginatedAdapter<Result, MovieAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<MovieAdapter.MyViewHolder>() {
     private var movieList: List<Result>
     private lateinit var binding: ItemMovieBinding
 
