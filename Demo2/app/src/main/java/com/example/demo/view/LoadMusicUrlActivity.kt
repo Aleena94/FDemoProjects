@@ -13,6 +13,7 @@ class LoadMusicUrlActivity : AppCompatActivity() {
         activityLoadMusicUrlBinding = ActivityLoadMusicUrlBinding.inflate(layoutInflater)
         setContentView(activityLoadMusicUrlBinding.root)
         supportActionBar!!.hide()
+
         activityLoadMusicUrlBinding.webViewMusic.settings.javaScriptEnabled
         val musicUrl = intent.getStringExtra("music_url").toString()
         activityLoadMusicUrlBinding.webViewMusic.webViewClient = object : WebViewClient() {

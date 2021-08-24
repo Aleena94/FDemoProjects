@@ -28,6 +28,7 @@ class CircleView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         canvas!!.drawArc(mRect, 270F, arcAngle, false, mPaint)
 
     }
+
     fun getArcAngle(): Float {
         return arcAngle
     }

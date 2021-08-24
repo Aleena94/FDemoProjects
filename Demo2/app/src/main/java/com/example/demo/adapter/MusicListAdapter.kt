@@ -15,8 +15,7 @@ class MusicListAdapter(
     private val context: Context,
     musicList: List<Album>,
     clickListener: ItemClickListener
-) :
-    RecyclerView.Adapter<MusicListAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<MusicListAdapter.MyViewHolder>() {
     private var musicList: List<Album>
     private val clickListener: ItemClickListener
     private lateinit var binding: ItemMusiclistBinding

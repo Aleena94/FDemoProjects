@@ -19,18 +19,18 @@ import java.io.InputStream
 class LoginViewModel : ViewModel() {
 
     private var liveDataLogin: LiveData<LoginModel>? = null
-
+    private val repository: LoginRepository = LoginRepository()
     fun insertData(context: Context, username: String, password: String) {
-        LoginRepository.insertData(context, username, password)
+        repository.insertData(context, username, password)
     }
 
     fun getLoginDetails(context: Context, username: String): LiveData<LoginModel>? {
-        liveDataLogin = LoginRepository.getLoginDetails(context, username)
+        liveDataLogin = repository.getLoginDetails(context, username)
         return liveDataLogin
     }
 
     fun deleteUser(context: Context, username: String) {
-        LoginRepository.deleteByUsername(context, username)
+        repository.deleteByUsername(context, username)
     }
 
 

@@ -6,9 +6,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
     private var BASE_URL = "https://ws.audioscrobbler.com/"
-    private var BASE_URL2="https://api.themoviedb.org/"
+    private var BASE_URL2 = "https://api.themoviedb.org/"
     private var retrofitClient: Retrofit? = null
-    private var retrofitClient2:Retrofit?=null
+    private var retrofitClient2: Retrofit? = null
 
     fun getRetrofitInstance(): Retrofit? {
         if (retrofitClient == null) {
