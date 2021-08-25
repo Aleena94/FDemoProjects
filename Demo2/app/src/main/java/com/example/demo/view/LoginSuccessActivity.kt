@@ -1,23 +1,15 @@
 package com.example.demo.view
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.demo.R
 import com.example.demo.databinding.ActivityLoginSuccessBinding
 import com.example.demo.services.BroadCastReceivers
-import com.example.demo.services.showSnackbar
 import com.example.demo.viewmodel.LoginViewModel
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -47,44 +39,10 @@ class LoginSuccessActivity : AppCompatActivity() {
         animation.duration = 1000
         binding.viewCircle.startAnimation(animation)
 
+
         binding.imgCamera.setOnClickListener {
-            when {
-                ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.CAMERA
-                ) == PackageManager.PERMISSION_GRANTED -> {
-                    it.showSnackbar(
-                        it,
-                        getString(R.string.permission_granted),
-                        Snackbar.LENGTH_INDEFINITE,
-                        getString(R.string.ok)
-                    ) {}
-
-                }
-
-                ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.CAMERA
-                ) -> {
-                    it.showSnackbar(
-                        it,
-                        getString(R.string.permission_required),
-                        Snackbar.LENGTH_INDEFINITE,
-                        getString(R.string.ok)
-                    ) {
-                        requestPermissionLauncher.launch(
-                            Manifest.permission.CAMERA
-                        )
-                    }
-                }
-
-                else -> {
-                    requestPermissionLauncher.launch(
-                        Manifest.permission.CAMERA
-                    )
-                }
-            }
-
+            val intent = Intent(this, ImageCaptureActivity::class.java)
+            startActivity(intent)
         }
 
         loginViewModel.getLoginDetails(context, strUsername)!!.observe(this, {
@@ -120,18 +78,12 @@ class LoginSuccessActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-    }
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                Log.i("Permission: ", "Granted")
-            } else {
-                Log.i("Permission: ", "Denied")
-            }
+        binding.btnLoadMap.setOnClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            startActivity(intent)
         }
+
+    }
 
     override fun onResume() {
         super.onResume()

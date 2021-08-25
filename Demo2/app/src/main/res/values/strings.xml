@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Demo2</string>
-    <string name="permission_required">Camera access is required to display camera preview</string>
-    <string name="ok">OK</string>
-    <string name="permission_granted">Permission Granted</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAc7qQLc4v6Z-fWqAOg9Kd_POb8qDGuC_8</string>
     <string name="next">NEXT</string>
     <string name="music_image">Music Image</string>
     <string name="login">LOGIN</string>
@@ -15,4 +13,7 @@
     <string name="data_not_found">Data Not Found</string>
     <string name="theme">Theme</string>
     <string name="load_movie">LOAD MOVIE</string>
+    <string name="camera">camera</string>
+    <string name="load_map">Map</string>
+    <string name="capture">capture</string>
 </resources>

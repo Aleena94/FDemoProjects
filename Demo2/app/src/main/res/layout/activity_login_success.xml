@@ -33,20 +33,32 @@
         android:textColor="@color/textColor"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/imgCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_20sdp"
+        android:contentDescription="@string/camera"
         android:src="@drawable/ic_baseline_photo_camera_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDelete" />
 
+    <ImageView
+        android:id="@+id/btnLoadMap"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:contentDescription="@string/load_map"
+        android:src="@drawable/ic_baseline_map_24"
+        app:layout_constraintLeft_toRightOf="@+id/imgCamera"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDelete" />
+
     <com.example.demo.view.CircleView
         android:id="@+id/viewCircle"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:layout_margin="@dimen/_10sdp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
