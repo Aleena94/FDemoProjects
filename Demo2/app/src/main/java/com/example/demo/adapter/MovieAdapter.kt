@@ -23,11 +23,13 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        movieList[position].apply {
+            binding.tvTitle.text = title
+            val language = "($original_language)"
+            binding.tvLanguage.text = language
+            binding.tvOverView.text = overview
+        }
 
-        binding.tvTitle.text = (movieList[position].title)
-        val language = "(" + movieList[position].original_language + ")"
-        binding.tvLanguage.text = language
-        binding.tvOverView.text = (movieList[position].overview)
 
     }
 

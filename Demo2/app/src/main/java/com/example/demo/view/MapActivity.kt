@@ -51,14 +51,16 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
         }
         try {
             if (mLocationPermissionGranted) {
-                mMap!!.isMyLocationEnabled = true
-                mMap!!.uiSettings.isMyLocationButtonEnabled = true
-
+                mMap?.let {
+                    it.isMyLocationEnabled=true
+                    it.uiSettings.isMyLocationButtonEnabled = true
+                }
             } else {
-                mMap!!.isMyLocationEnabled = false
-                mMap!!.uiSettings.isMyLocationButtonEnabled = false
+                mMap?.let {
+                    it.isMyLocationEnabled = false
+                    it.uiSettings.isMyLocationButtonEnabled = false
+                }
                 mLastKnownLocation = null
-
             }
             locationPermission
         } catch (e: SecurityException) {
