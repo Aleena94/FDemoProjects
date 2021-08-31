@@ -8,31 +8,36 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.demo.model.login.LoginModel
 import com.example.demo.repository.LoginRepository
+import com.example.demo.view.LoginActivity
+import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val repository: LoginRepository) : ViewModel() {
 
     private var liveDataLogin: LiveData<LoginModel>? = null
-    private val repository: LoginRepository = LoginRepository()
-    fun insertData(context: Context, username: String, password: String) {
-        repository.insertData(context, username, password)
-    }
 
-    fun getLoginDetails(context: Context, username: String): LiveData<LoginModel>? {
-        liveDataLogin = repository.getLoginDetails(context, username)
+     fun insertLoginData(strUsername: String, strPassword: String) {
+        viewModelScope.launch {
+                repository.insertData(strUsername, strPassword)
+            }
+        }
+
+    fun getLoginDetails(username: String): LiveData<LoginModel>? {
+            liveDataLogin = repository.getLoginDetails(username)
         return liveDataLogin
     }
 
-    fun deleteUser(context: Context, username: String) {
-        repository.deleteByUsername(context, username)
+    fun deleteUser(username: String) {
+        repository.deleteByUsername(username)
     }
-
 
     fun copyFileToInternalStorage(context: Context, bitmap: Bitmap): String? {
         //  val drawable = ContextCompat.getDrawable(context, drawableId)
@@ -87,6 +92,7 @@ class LoginViewModel : ViewModel() {
         }
         return output.path
     }
+
 
 
 }

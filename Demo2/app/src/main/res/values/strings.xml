@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Demo2</string>
+    <string name="app_name">Demo</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAc7qQLc4v6Z-fWqAOg9Kd_POb8qDGuC_8</string>
     <string name="next">NEXT</string>
     <string name="music_image">Music Image</string>

@@ -10,16 +10,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.*
 import com.example.demo.R
 import com.example.demo.adapter.MovieAdapter
 import com.example.demo.databinding.ActivityMoviesBinding
+import com.example.demo.di.Demo
 import com.example.demo.model.movielist.Result
 import com.example.demo.services.isOnline
 import com.example.demo.viewmodel.MovieViewModel
 import com.paginate.Paginate
 import com.paginate.recycler.LoadingListItemCreator
+import org.koin.android.ext.android.inject
 import java.lang.String
 import java.util.*
 
@@ -29,7 +30,7 @@ class MoviesActivity : AppCompatActivity(), Paginate.Callbacks {
     lateinit var context: Context
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var adapter: MovieAdapter
-    private lateinit var movieViewModel: MovieViewModel
+    private val movieViewModel: MovieViewModel by inject()
     private var movie: List<Result> = ArrayList<Result>()
     private var loading = false
     private var page = 1
@@ -46,7 +47,6 @@ class MoviesActivity : AppCompatActivity(), Paginate.Callbacks {
         context = this@MoviesActivity
 
         layoutManager = LinearLayoutManager(this)
-        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         handler = Handler()
         adapter = MovieAdapter(movie)
 
@@ -71,6 +71,7 @@ class MoviesActivity : AppCompatActivity(), Paginate.Callbacks {
             paginate!!.unbind()
         }
         handler!!.removeCallbacks(fakeCallback)
+
         movieViewModel.getMovie(page)!!.observe(this, { movieList ->
 
             if (movieList != null) {

@@ -7,15 +7,15 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.demo.R
 import com.example.demo.databinding.ActivityLoginBinding
 import com.example.demo.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by inject()
     lateinit var context: Context
     private lateinit var binding: ActivityLoginBinding
     private lateinit var strUsername: String
@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         context = this@LoginActivity
         supportActionBar!!.hide()
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.DarkTheme)
@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 else -> {
                     lifecycleScope.launch {
-                        loginViewModel.insertData(context, strUsername, strPassword)
+                        loginViewModel.insertLoginData(strUsername, strPassword)
                     }
                     val intent = Intent(this, LoginSuccessActivity::class.java)
                     intent.putExtra("username", strUsername)

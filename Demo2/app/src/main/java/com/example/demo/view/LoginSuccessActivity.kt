@@ -14,13 +14,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.android.ext.android.inject
 
 
 class LoginSuccessActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginSuccessBinding
     private lateinit var strUsername: String
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by inject()
     lateinit var context: Context
     private lateinit var receiver: BroadCastReceivers
 
@@ -31,7 +32,6 @@ class LoginSuccessActivity : AppCompatActivity() {
         context = this@LoginSuccessActivity
         supportActionBar!!.hide()
 
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         strUsername = intent.getStringExtra("username").toString()
         receiver = BroadCastReceivers()
 
@@ -45,23 +45,21 @@ class LoginSuccessActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        loginViewModel.getLoginDetails(context, strUsername)!!.observe(this, {
+        loginViewModel.getLoginDetails(strUsername)!!.observe(this, {
 
             if (it == null) {
                 binding.txtName.text = resources.getString(R.string.data_not_found)
-
             } else {
                 val result =
                     getString(R.string.welcome) +
                             it.Username + resources.getString(R.string.user_password) + it.Password
                 binding.txtName.text = result
-
             }
         })
 
         binding.btnDelete.setOnClickListener {
             GlobalScope.launch {
-                loginViewModel.deleteUser(context, strUsername)
+                loginViewModel.deleteUser(strUsername)
                 withContext(Dispatchers.Main) {
                     binding.txtName.text = resources.getString(R.string.user_deleted)
                 }

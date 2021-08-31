@@ -10,7 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.demo.adapter.MusicListAdapter
 import com.example.demo.databinding.ActivityDatalistBinding
@@ -19,6 +19,8 @@ import com.example.demo.model.musiclist.Album
 import com.example.demo.services.isOnline
 import com.example.demo.viewmodel.LoginViewModel
 import com.example.demo.viewmodel.MusicListViewModel
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
@@ -26,11 +28,11 @@ import java.net.URL
 class DataListingActivity : AppCompatActivity(), ItemClickListener {
 
     lateinit var context: Context
-    private lateinit var musicListViewModel: MusicListViewModel
+    private val musicListViewModel: MusicListViewModel by inject()
     private var adapter: MusicListAdapter? = null
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var mainBinding: ActivityDatalistBinding
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,24 +42,25 @@ class DataListingActivity : AppCompatActivity(), ItemClickListener {
         context = this@DataListingActivity
 
         layoutManager = LinearLayoutManager(this)
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        musicListViewModel = ViewModelProvider(this).get(MusicListViewModel::class.java)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (isOnline(context)) {
-                musicListViewModel.getMusic()!!.observe(this, { musicList ->
+                    musicListViewModel.getMusic()!!.observe(context as DataListingActivity, { musicList ->
 
-                    if (musicList != null) {
-                        mainBinding.recyclerView.layoutManager =
-                            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                        adapter =
-                            MusicListAdapter(this, musicList.results.albummatches.album, this)
-                        mainBinding.recyclerView.adapter = adapter
-                        adapter!!.setMusicList(musicList.results.albummatches.album)
-                        mainBinding.progressBar.visibility = View.GONE
-                    }
+                        if (musicList != null) {
+                            mainBinding.recyclerView.layoutManager =
+                                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                            adapter =
+                                MusicListAdapter(context, musicList.results.albummatches.album,
+                                    context as DataListingActivity
+                                )
+                            mainBinding.recyclerView.adapter = adapter
+                            adapter!!.setMusicList(musicList.results.albummatches.album)
+                            mainBinding.progressBar.visibility = View.GONE
+                        }
 
-                })
+                    })
+
             } else {
                 mainBinding.progressBar.visibility = View.GONE
                 Toast.makeText(this, "Check your Network Connection", Toast.LENGTH_SHORT).show()
