@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.demo.R
 import com.example.demo.databinding.ActivityLoginSuccessBinding
 import com.example.demo.services.BroadCastReceivers

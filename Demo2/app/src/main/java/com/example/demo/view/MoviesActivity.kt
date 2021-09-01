@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.*
 import com.example.demo.R
 import com.example.demo.adapter.MovieAdapter
 import com.example.demo.databinding.ActivityMoviesBinding
-import com.example.demo.di.Demo
 import com.example.demo.model.movielist.Result
 import com.example.demo.services.isOnline
 import com.example.demo.viewmodel.MovieViewModel

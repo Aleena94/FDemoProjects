@@ -8,12 +8,10 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.demo.model.login.LoginModel
 import com.example.demo.repository.LoginRepository
-import com.example.demo.view.LoginActivity
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -24,14 +22,14 @@ class LoginViewModel(private val repository: LoginRepository) : ViewModel() {
 
     private var liveDataLogin: LiveData<LoginModel>? = null
 
-     fun insertLoginData(strUsername: String, strPassword: String) {
+    fun insertLoginData(strUsername: String, strPassword: String) {
         viewModelScope.launch {
-                repository.insertData(strUsername, strPassword)
-            }
+            repository.insertData(strUsername, strPassword)
         }
+    }
 
     fun getLoginDetails(username: String): LiveData<LoginModel>? {
-            liveDataLogin = repository.getLoginDetails(username)
+        liveDataLogin = repository.getLoginDetails(username)
         return liveDataLogin
     }
 
@@ -92,7 +90,6 @@ class LoginViewModel(private val repository: LoginRepository) : ViewModel() {
         }
         return output.path
     }
-
 
 
 }

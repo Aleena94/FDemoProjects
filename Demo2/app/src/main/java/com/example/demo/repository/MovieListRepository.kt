@@ -14,22 +14,23 @@ class MovieListRepository(private val retrofitClient: RetrofitClient) {
 
     fun getMovies(page: Int)
             : MutableLiveData<MovieList> {
-        val service= retrofitClient.getRetrofitInstance2()!!.create(ApiInterface::class.java)
-         val call=service.getMovieList(
-             page.toString(),
-             "en_US",
-             "9b3b08faa69545763a0a0fab4646c752")
-         call!!.enqueue(object : Callback<MovieList?> {
-             override fun onFailure(call: Call<MovieList?>, t: Throwable) {
-                 Log.v("DEBUG : ", t.message.toString())
-             }
+        val service = retrofitClient.getRetrofitInstance2()!!.create(ApiInterface::class.java)
+        val call = service.getMovieList(
+            page.toString(),
+            "en_US",
+            "9b3b08faa69545763a0a0fab4646c752"
+        )
+        call!!.enqueue(object : Callback<MovieList?> {
+            override fun onFailure(call: Call<MovieList?>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
 
-             override fun onResponse(call: Call<MovieList?>, response: Response<MovieList?>) {
-                 Log.v("DEBUG : ", response.body().toString())
-                 movieList.postValue(response.body())
+            override fun onResponse(call: Call<MovieList?>, response: Response<MovieList?>) {
+                Log.v("DEBUG : ", response.body().toString())
+                movieList.postValue(response.body())
 
-             }
-         })
+            }
+        })
         return movieList
     }
 }

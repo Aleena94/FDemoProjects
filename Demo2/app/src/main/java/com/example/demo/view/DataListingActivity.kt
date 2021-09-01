@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.demo.adapter.MusicListAdapter
 import com.example.demo.databinding.ActivityDatalistBinding
@@ -19,7 +18,6 @@ import com.example.demo.model.musiclist.Album
 import com.example.demo.services.isOnline
 import com.example.demo.viewmodel.LoginViewModel
 import com.example.demo.viewmodel.MusicListViewModel
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import java.io.InputStream
 import java.net.HttpURLConnection
@@ -45,13 +43,15 @@ class DataListingActivity : AppCompatActivity(), ItemClickListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (isOnline(context)) {
-                    musicListViewModel.getMusic()!!.observe(context as DataListingActivity, { musicList ->
+                musicListViewModel.getMusic()!!
+                    .observe(context as DataListingActivity, { musicList ->
 
                         if (musicList != null) {
                             mainBinding.recyclerView.layoutManager =
                                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             adapter =
-                                MusicListAdapter(context, musicList.results.albummatches.album,
+                                MusicListAdapter(
+                                    context, musicList.results.albummatches.album,
                                     context as DataListingActivity
                                 )
                             mainBinding.recyclerView.adapter = adapter

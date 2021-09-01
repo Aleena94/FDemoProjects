@@ -12,10 +12,10 @@ class MusicListViewModel(private val repository: MusicListRepository) : ViewMode
 
     private var servicesLiveData: MutableLiveData<MusicList>? = null
 
-     fun getMusic(): LiveData<MusicList>? {
-         viewModelScope.launch {
-             servicesLiveData = repository.getMusic()
-         }
+    fun getMusic(): LiveData<MusicList>? {
+        viewModelScope.launch {
+            servicesLiveData = repository.getMusic()
+        }
         return servicesLiveData
     }
 }

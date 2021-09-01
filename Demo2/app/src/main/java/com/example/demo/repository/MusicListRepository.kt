@@ -9,14 +9,13 @@ import com.example.demo.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.create
 
-class MusicListRepository( private val retrofitClient: RetrofitClient) {
+class MusicListRepository(private val retrofitClient: RetrofitClient) {
 
     private val musicList = MutableLiveData<MusicList>()
 
     fun getMusic(): MutableLiveData<MusicList> {
-        val service= retrofitClient.getRetrofitInstance()!!.create(ApiInterface::class.java)
+        val service = retrofitClient.getRetrofitInstance()!!.create(ApiInterface::class.java)
         val call = service.getMusicList(
             "album.search",
             "believe",
