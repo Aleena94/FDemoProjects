@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\Aleena\\Documents\\Demo\\FDemoProjects\\Practice\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_custom_loading_list.xml",
+        "source": "C:\\Users\\Aleena\\Documents\\Demo\\FDemoProjects\\Practice\\app\\src\\main\\res\\layout\\item_custom_loading_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Aleena\\Documents\\Demo\\FDemoProjects\\Practice\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_todo.xml",
+        "source": "C:\\Users\\Aleena\\Documents\\Demo\\FDemoProjects\\Practice\\app\\src\\main\\res\\layout\\item_todo.xml"
+    },
+    {
+        "merged": "C:\\Users\\Aleena\\Documents\\Demo\\FDemoProjects\\Practice\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_todo.xml",
+        "source": "C:\\Users\\Aleena\\Documents\\Demo\\FDemoProjects\\Practice\\app\\src\\main\\res\\layout\\activity_todo.xml"
+    }
+]
