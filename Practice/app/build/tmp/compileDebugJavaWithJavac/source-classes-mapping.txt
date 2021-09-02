@@ -1,0 +1,16 @@
+com/example/test/database/Dao_Impl.java
+ com.example.test.database.Dao_Impl
+ com.example.test.database.Dao_Impl$1
+ com.example.test.database.Dao_Impl$2
+ com.example.test.database.Dao_Impl$3
+com/example/test/databinding/ItemCustomLoadingListBinding.java
+ com.example.test.databinding.ItemCustomLoadingListBinding
+com/example/test/BuildConfig.java
+ com.example.test.BuildConfig
+com/example/test/databinding/ItemTodoBinding.java
+ com.example.test.databinding.ItemTodoBinding
+com/example/test/database/ToDoDatabase_Impl.java
+ com.example.test.database.ToDoDatabase_Impl
+ com.example.test.database.ToDoDatabase_Impl$1
+com/example/test/databinding/ActivityTodoBinding.java
+ com.example.test.databinding.ActivityTodoBinding
