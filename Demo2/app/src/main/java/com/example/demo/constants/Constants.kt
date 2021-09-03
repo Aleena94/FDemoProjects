@@ -6,4 +6,5 @@ object Constants {
     const val FILENAME = "yyyy-MM-dd-HH-mm-ss-SSS"
     const val REQUEST_MAP = 1
     const val ZOOM = 15.0f
+    const val MESSAGE_STATUS = "message_status"
 }

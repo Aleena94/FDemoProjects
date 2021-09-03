@@ -16,4 +16,5 @@
     <string name="camera">camera</string>
     <string name="load_map">Map</string>
     <string name="capture">capture</string>
+    <string name="execute">execute</string>
 </resources>

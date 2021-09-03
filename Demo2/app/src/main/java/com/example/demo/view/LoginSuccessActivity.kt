@@ -4,16 +4,25 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.example.demo.R
 import com.example.demo.databinding.ActivityLoginSuccessBinding
 import com.example.demo.services.BroadCastReceivers
+import com.example.demo.services.NotificationWorker
 import com.example.demo.viewmodel.LoginViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
+import androidx.work.WorkInfo
+
+
+
 
 
 class LoginSuccessActivity : AppCompatActivity() {
@@ -37,7 +46,12 @@ class LoginSuccessActivity : AppCompatActivity() {
         val animation = CircleAnimation(binding.viewCircle, 360)
         animation.duration = 1000
         binding.viewCircle.startAnimation(animation)
+        val mWorkManager = WorkManager.getInstance()
+        val mRequest = OneTimeWorkRequest.Builder(NotificationWorker::class.java).build()
 
+        binding.btnWork.setOnClickListener {
+            mWorkManager.enqueue(mRequest)
+        }
 
         binding.imgCamera.setOnClickListener {
             val intent = Intent(this, ImageCaptureActivity::class.java)
