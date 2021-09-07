@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#A3555F</color>
+    <color name="textColor">#FF000000</color>
+    <color name="backgroundColor">#FFFFFFFF</color>
+    <color name="buttonColor">#C31515</color>
+    <color name="login_background">#E4E8BD</color>
+    <integer-array name="color_array">
+        <item>@color/buttonColor</item>
+        <item>@color/textColor</item>
+    </integer-array>
+
+</resources>

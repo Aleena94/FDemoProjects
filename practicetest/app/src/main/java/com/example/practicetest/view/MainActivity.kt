@@ -105,8 +105,6 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
             }
 
         })
-
-
     }
 
     override fun onItemClick(favourite: Boolean, id: Int, position: Int) {
